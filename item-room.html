@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>रहस्यमयी कमरा - चाबी उठाएं</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .item {
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #222;
+      width: 300px;
+      border: 2px solid gold;
+      cursor: pointer;
+    }
+
+    .btn {
+      background-color: darkred;
+      color: white;
+      padding: 10px 20px;
+      margin-top: 20px;
+      font-size: 16px;
+      text-decoration: none;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn:disabled {
+      background-color: gray;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>कमरा रहस्यमयी लगता है...</h1>
+  <p>आपको ज़मीन पर कुछ चमकता हुआ दिख रहा है!</p>
+
+  <div class="item" onclick="pickupKey()">यह चाबी उठाएं</div>
+
+  <button class="btn" id="doorBtn" onclick="openDoor()" disabled>दरवाज़ा खोलें</button>
+
+  <p id="status"></p>
+
+  <script>
+    let hasKey = false;
+
+    function pickupKey() {
+      hasKey = true;
+      document.getElementById("status").innerText = "आपने चाबी उठा ली है!";
+      document.getElementById("doorBtn").disabled = false;
+    }
+
+    function openDoor() {
+      if (hasKey) {
+        window.location.href = "Level2.html"; // अगला पेज जहाँ जाना है
+      } else {
+        document.getElementById("status").innerText = "दरवाज़ा नहीं खुलेगा, पहले चाबी ढूंढो!";
+      }
+    }
+  </script>
+</body>
+</html>
