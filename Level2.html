@@ -2,32 +2,72 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
-  <title>Level 2 - दूसरा कमरा</title>
+  <title>रहस्यमयी गहना</title>
   <style>
     body {
       background-color: #000;
-      color: #FF4444;
+      color: #00FFAA;
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 20px;
     }
-    .btn {
-      background-color: #FF4444;
-      color: white;
-      padding: 10px 20px;
-      display: inline-block;
-      margin: 10px;
-      text-decoration: none;
+
+    .item {
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #111;
+      width: 300px;
+      border: 2px solid cyan;
+      cursor: pointer;
     }
-    .btn:hover {
-      background-color: #cc0000;
+
+    .btn {
+      background-color: #00CCAA;
+      color: black;
+      padding: 10px 20px;
+      margin-top: 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn:disabled {
+      background-color: grey;
+      cursor: not-allowed;
+    }
+
+    #status {
+      margin-top: 15px;
     }
   </style>
 </head>
 <body>
-  <h1>Level 2: दूसरा कमरा</h1>
-  <p>आपने दरवाज़ा खोला... यह और भी ज़्यादा डरावना है!</p>
-  <a href="room2.html" class="btn">दरवाज़ा खोलें</a>
-  <a href="escape.html" class="btn">बाहर भागें</a>
+
+  <h1>Level 3: रहस्यमयी गहना</h1>
+  <p>कमरे के बीचों-बीच एक चमकता हुआ गहना रखा है...</p>
+
+  <div class="item" onclick="collectJewel()">गहना उठाएँ</div>
+
+  <button class="btn" id="nextBtn" onclick="goToVictory()" disabled>आगे जाएँ</button>
+
+  <p id="status"></p>
+
+  <script>
+    let hasJewel = false;
+
+    function collectJewel() {
+      hasJewel = true;
+      document.getElementById("status").innerText = "आपने रहस्यमयी गहना उठा लिया है!";
+      document.getElementById("nextBtn").disabled = false;
+    }
+
+    function goToVictory() {
+      if (hasJewel) {
+        window.location.href = "victory.html"; // Final विजयी पेज
+      }
+    }
+  </script>
+
 </body>
 </html>
