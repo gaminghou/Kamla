@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>स्वागत है - Kamla Game</title>
+  <style>
+    body {
+      background-image: url('https://i.ibb.co/WGnkyZp/apsaras-by-pool.png');
+      background-size: cover;
+      background-position: center;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      text-align: center;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.5);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: gold;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px black;
+    }
+
+    p {
+      font-size: 1.3em;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 3px black;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      background-color: #FF4444;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #cc0000;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>स्वागत है, योद्धा!</h1>
+    <p>क्या आप इस रहस्यमयी सफर के लिए तैयार हैं?</p>
+    <a href="index.html" class="btn">खेल शुरू करें</a>
+  </div>
+
+  <audio autoplay loop>
+    <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Monplaisir/Astral_Sessions/Monplaisir_-_01_-_Opening_Credits.mp3" type="audio/mpeg">
+    आपका ब्राउज़र म्यूज़िक सपोर्ट नहीं करता।
+  </audio>
+</body>
+</html>
