@@ -6,12 +6,11 @@
   <style>
     body {
       background-color: #000;
-      color: #00FFAA;
+      color: #00ffaa;
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 20px;
     }
-
     .item {
       margin: 30px auto;
       padding: 20px;
@@ -20,9 +19,8 @@
       border: 2px solid cyan;
       cursor: pointer;
     }
-
     .btn {
-      background-color: #00CCAA;
+      background-color: #00ccaa;
       color: black;
       padding: 10px 20px;
       margin-top: 20px;
@@ -31,26 +29,18 @@
       border-radius: 5px;
       cursor: pointer;
     }
-
     .btn:disabled {
       background-color: grey;
       cursor: not-allowed;
     }
-
-    #status {
-      margin-top: 15px;
-    }
+    #status { margin-top: 15px; }
   </style>
 </head>
 <body>
-
-  <h1>Level 3: रहस्यमयी गहना</h1>
+  <h1>Level 2: रहस्यमयी गहना</h1>
   <p>कमरे के बीचों-बीच एक चमकता हुआ गहना रखा है...</p>
-
   <div class="item" onclick="collectJewel()">गहना उठाएँ</div>
-
-  <button class="btn" id="nextBtn" onclick="goToVictory()">आगे जाएँ</button>
-
+  <button class="btn" id="nextBtn" onclick="goToVictory()" disabled>आगे जाएँ</button>
   <p id="status"></p>
 
   <script>
@@ -64,10 +54,9 @@
 
     function goToVictory() {
       if (hasJewel) {
-        window.location.href = "victory.html"; // Final विजयी पेज
+        window.location.href = "victory.html";
       }
     }
   </script>
-
 </body>
 </html>
