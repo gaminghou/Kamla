@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>भूतिया कमरा</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #ff4444;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      padding: 30px;
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.2em;
+      margin: 15px 0;
+    }
+    .btn {
+      background-color: #660000;
+      color: white;
+      padding: 12px 25px;
+      font-size: 1em;
+      margin: 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #990000;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>भूतिया कमरा</h1>
+  <p>कमरे में अंधेरा है, दीवारों से खून टपक रहा है...</p>
+  <p>एक आत्मा हवा में तैर रही है और कहती है:</p>
+  <p><em>"अगर जान बचानी है, तो सही मंत्र चुनो..."</em></p>
+
+  <button class="btn" onclick="choose('a')">मंत्र A: 'ॐ कालभैरवाय नमः'</button>
+  <button class="btn" onclick="choose('b')">मंत्र B: 'ॐ अमृतेश्वर्यै नमः'</button>
+
+  <p id="result" style="margin-top: 30px; font-size: 1.3em;"></p>
+
+  <script>
+    function choose(option) {
+      let msg = '';
+      if (option === 'b') {
+        msg = "आत्मा शांत हो गई... रास्ता खुल गया!";
+        setTimeout(() => {
+          window.location.href = 'final.html';
+        }, 2000);
+      } else {
+        msg = "आपने गलत मंत्र चुना... आत्मा ने आपको जकड़ लिया!";
+        setTimeout(() => {
+          window.location.href = 'trap.html';
+        }, 2000);
+      }
+      document.getElementById("result").innerText = msg;
+    }
+  </script>
+
+</body>
+</html>
