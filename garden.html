@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>स्वर्गिक गार्डन</title>
+  <style>
+    body {
+      background-image: linear-gradient(to bottom, #330033, #000000);
+      color: #ffccff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.2em;
+      margin: 10px 0;
+    }
+    .btn {
+      background-color: #9933cc;
+      color: white;
+      padding: 10px 20px;
+      margin-top: 30px;
+      border: none;
+      font-size: 1em;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #cc66ff;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>स्वर्गिक गार्डन</h1>
+  <p>आप एक चमचमाते बग़ीचे में पहुँच चुके हैं।</p>
+  <p>चारों ओर फूलों की खुशबू है और अप्सराएं मंत्रों से आपका स्वागत कर रही हैं।</p>
+  <p>एक जादुई फूल ज़मीन पर चमक रहा है...</p>
+
+  <button class="btn" onclick="collectFlower()">जादुई फूल उठाएँ</button>
+  <p id="msg"></p>
+
+  <a href="ghost-room.html" class="btn">आगे बढ़ें</a>
+
+  <script>
+    function collectFlower() {
+      localStorage.setItem("flower", "true");
+      document.getElementById("msg").innerText = "आपने जादुई फूल उठाया और आपको एक रहस्यमयी ऊर्जा का अनुभव हुआ!";
+    }
+  </script>
+
+</body>
+</html>
