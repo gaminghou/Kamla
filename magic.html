@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>जादुई शक्तियाँ</title>
+  <style>
+    body {
+      background: radial-gradient(circle, #220033, #000000);
+      color: #cc99ff;
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      padding: 40px;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #eeccff;
+    }
+    .power {
+      margin: 15px auto;
+      background-color: #331144;
+      padding: 15px;
+      border-radius: 10px;
+      width: 60%;
+      font-size: 1.2em;
+    }
+    .btn {
+      margin-top: 30px;
+      background-color: #9900cc;
+      color: white;
+      padding: 10px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background-color: #cc33ff;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>आपकी जादुई शक्तियाँ</h1>
+  <div id="powers"></div>
+
+  <a href="index.html" class="btn">मुख्य पृष्ठ पर लौटें</a>
+
+  <script>
+    const powers = [];
+
+    if (localStorage.getItem("flower") === "true") {
+      powers.push("✿ स्वर्गिक फूल: जीवन शक्ति 20% बढ़ा देता है");
+    }
+    if (localStorage.getItem("jewel") === "true") {
+      powers.push("💎 रहस्यमयी गहना: आपको आत्मा की रक्षा देता है");
+    }
+    if (localStorage.getItem("book") === "true") {
+      powers.push("📖 मंत्रों की किताब: एक बार बुरी आत्मा को रोक सकती है");
+    }
+    if (localStorage.getItem("blessing") === "true") {
+      powers.push("✨ अप्सरा का आशीर्वाद: आपकी किस्मत का असर बढ़ाता है");
+    }
+    if (localStorage.getItem("magicwater") === "true") {
+      powers.push("⚗️ जादुई जल: ज़हर और ट्रैप से सुरक्षा");
+    }
+
+    const container = document.getElementById("powers");
+    if (powers.length === 0) {
+      container.innerHTML = "<p>आपने अभी तक कोई जादुई वस्तु प्राप्त नहीं की।</p>";
+    } else {
+      powers.forEach(power => {
+        const div = document.createElement("div");
+        div.className = "power";
+        div.innerText = power;
+        container.appendChild(div);
+      });
+    }
+  </script>
+
+</body>
+</html>
