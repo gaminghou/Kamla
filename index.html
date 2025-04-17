@@ -7,6 +7,7 @@
     body {
       margin: 0;
       overflow: hidden;
+      background: black;
     }
     canvas {
       display: block;
@@ -23,10 +24,11 @@
   const canvas = document.getElementById("gameCanvas");
   const ctx = canvas.getContext("2d");
 
-  // ✅ नया working background
+  // Background image
   const bg = new Image();
   bg.src = "https://images.unsplash.com/photo-1587474260584-136574528edb?fit=crop&w=800&h=450&auto=format";
 
+  // Player
   const player = {
     x: 50,
     y: 350,
