@@ -2,114 +2,65 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
-  <title>Kamla Game - Magic & Enemy</title>
+  <title>Kamla Game</title>
   <style>
     body {
       margin: 0;
-      overflow: hidden;
-      background: black;
+      background-color: black;
     }
     canvas {
       display: block;
-      margin: 0 auto;
+      margin: auto;
+      background: url('https://i.ibb.co/s2Lnqzj/haunted-bg.jpg') no-repeat center center;
+      background-size: cover;
     }
   </style>
 </head>
 <body>
+  <canvas id="gameCanvas" width="800" height="450"></canvas>
 
-<canvas id="gameCanvas" width="800" height="450"></canvas>
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
 
-<audio autoplay loop>
-  <source src="https://cdn.pixabay.com/download/audio/2023/03/04/audio_e2ef86edb6.mp3?filename=dark-horror-background-music-141011.mp3" type="audio/mp3">
-</audio>
+    const player = {
+      x: 50, y: 350, width: 40, height: 40, color: '#00ff88', speed: 4
+    };
 
-<script>
-  const canvas = document.getElementById("gameCanvas");
-  const ctx = canvas.getContext("2d");
+    const enemy = {
+      x: 700, y: 350, width: 40, height: 40, color: '#ff4444'
+    };
 
-  const bg = new Image();
-  bg.src = "https://cdn.pixabay.com/photo/2017/08/01/08/29/haunted-2560x1440.jpg";
+    const keys = {};
+    window.addEventListener('keydown', e => keys[e.key] = true);
+    window.addEventListener('keyup', e => keys[e.key] = false);
 
-  const player = {
-    x: 50,
-    y: 350,
-    width: 40,
-    height: 40,
-    color: "#00ff88",
-    speed: 4
-  };
-
-  const ghost = {
-    x: 600,
-    y: 350,
-    width: 40,
-    height: 40,
-    color: "#ff0000"
-  };
-
-  const keys = {};
-  let magicMessage = "";
-
-  window.addEventListener("keydown", e => {
-    keys[e.key] = true;
-    if (e.key === " ") {
-      magicMessage = "⚡ Magic Power Activated!";
-      setTimeout(() => {
-        magicMessage = "";
-      }, 1000);
+    function movePlayer() {
+      if (keys["ArrowRight"] && player.x + player.width < canvas.width) player.x += player.speed;
+      if (keys["ArrowLeft"] && player.x > 0) player.x -= player.speed;
+      if (keys["ArrowUp"] && player.y > 0) player.y -= player.speed;
+      if (keys["ArrowDown"] && player.y + player.height < canvas.height) player.y += player.speed;
     }
-  });
-  window.addEventListener("keyup", e => keys[e.key] = false);
 
-  function movePlayer() {
-    if (keys["ArrowRight"] && player.x + player.width < canvas.width) player.x += player.speed;
-    if (keys["ArrowLeft"] && player.x > 0) player.x -= player.speed;
-    if (keys["ArrowUp"] && player.y > 0) player.y -= player.speed;
-    if (keys["ArrowDown"] && player.y + player.height < canvas.height) player.y += player.speed;
-  }
-
-  function checkCollision() {
-    if (
-      player.x < ghost.x + ghost.width &&
-      player.x + player.width > ghost.x &&
-      player.y < ghost.y + ghost.height &&
-      player.y + player.height > ghost.y
-    ) {
-      alert("आप आत्मा से टकरा गए! गेम समाप्त!");
-      location.reload(); // गेम रीसेट
+    function drawPlayer() {
+      ctx.fillStyle = player.color;
+      ctx.fillRect(player.x, player.y, player.width, player.height);
     }
-  }
 
-  function drawPlayer() {
-    ctx.fillStyle = player.color;
-    ctx.fillRect(player.x, player.y, player.width, player.height);
-  }
-
-  function drawGhost() {
-    ctx.fillStyle = ghost.color;
-    ctx.fillRect(ghost.x, ghost.y, ghost.width, ghost.height);
-  }
-
-  function drawMagicText() {
-    if (magicMessage !== "") {
-      ctx.font = "24px Arial";
-      ctx.fillStyle = "yellow";
-      ctx.fillText(magicMessage, 20, 40);
+    function drawEnemy() {
+      ctx.fillStyle = enemy.color;
+      ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
     }
-  }
 
-  function gameLoop() {
-    ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
-    movePlayer();
-    drawPlayer();
-    drawGhost();
-    drawMagicText();
-    checkCollision();
-    requestAnimationFrame(gameLoop);
-  }
+    function drawGame() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      movePlayer();
+      drawPlayer();
+      drawEnemy();
+      requestAnimationFrame(drawGame);
+    }
 
-  gameLoop();
-</script>
-
+    drawGame();
+  </script>
 </body>
 </html>
