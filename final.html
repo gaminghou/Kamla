@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>अंतिम द्वंद्व - प्रकाश बनाम अंधकार</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #000000, #330000);
+      color: #ffcc00;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      padding: 30px;
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+    .hero {
+      font-size: 1.5em;
+      color: #ffffff;
+      margin: 20px 0;
+    }
+    .battle-options {
+      margin-top: 40px;
+    }
+    .btn {
+      background-color: #cc0000;
+      color: white;
+      padding: 12px 30px;
+      font-size: 18px;
+      margin: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #ff0000;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>अंतिम द्वंद्व</h1>
+  <p class="hero">Smart Writer और अंतिम आत्मा का आमना-सामना हो चुका है।</p>
+  <p>यह आत्मा आधी स्वर्गिक और आधी नर्क की है... इसे हराना आसान नहीं!</p>
+
+  <div class="battle-options">
+    <button class="btn" onclick="choose('magic')">जादू का प्रयोग करें</button>
+    <button class="btn" onclick="choose('sword')">तलवार से हमला करें</button>
+    <button class="btn" onclick="choose('escape')">पीछे हटें</button>
+  </div>
+
+  <p id="result" style="margin-top: 30px; font-size: 1.3em;"></p>
+
+  <script>
+    function choose(option) {
+      let resultText = '';
+      if (option === 'magic') {
+        resultText = "आपने दिव्य मंत्र से आत्मा को शांत कर दिया। आप विजयी हैं!";
+        setTimeout(() => window.location.href = 'victory.html', 3000);
+      } else if (option === 'sword') {
+        resultText = "तलवार आत्मा को नहीं रोक सकी। आप जाल में फँस गए!";
+        setTimeout(() => window.location.href = 'trap.html', 3000);
+      } else {
+        resultText = "आपने भागने की कोशिश की, लेकिन आत्मा ने आपको घेर लिया...";
+        setTimeout(() => window.location.href = 'trap.html', 3000);
+      }
+      document.getElementById("result").innerText = resultText;
+    }
+  </script>
+
+</body>
+</html>
