@@ -2,44 +2,79 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
-  <title>Kamla - डरावनी गेम</title>
+  <title>Kamla Game</title>
   <style>
     body {
-      background-color: black;
-      color: #FF4444;
-      text-align: center;
-      font-family: Arial, sans-serif;
-      padding: 20px;
+      margin: 0;
+      overflow: hidden;
+      background: black;
     }
-    h1 { font-size: 3em; }
-    h2 { font-size: 1.5em; color: white; }
-    ul { list-style: none; padding: 0; }
-    li { margin: 10px 0; color: #ffcc00; }
-    .btn {
-      background-color: #ff4444;
-      color: white;
-      padding: 10px 20px;
-      font-size: 1em;
-      border: none;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-    .btn:hover {
-      background-color: #cc0000;
+    canvas {
+      display: block;
+      margin: 0 auto;
+      background-size: cover;
+      background-position: center;
     }
   </style>
 </head>
 <body>
-  <h1>Kamla</h1>
-  <h2>डरावनी गेम की शुरुआत</h2>
-  <p>इस भूतिया घर में प्रवेश करो... रहस्यमयी चीजें खोजो और ज़िंदा निकलो!</p>
-  <ul>
-    <li>पुराना पेंटिंग</li>
-    <li>भूत की डायरी</li>
-    <li>खून सना खिलौना</li>
-    <li>रहस्यमयी चाबी</li>
-  </ul>
-  <p>जल्द ही यहाँ असली गेम लॉन्च होगा...</p>
-  <a href="level1.html" class="btn">शुरू करें</a>
+
+<canvas id="gameCanvas" width="800" height="450"></canvas>
+
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2023/03/04/audio_e2ef86edb6.mp3?filename=dark-horror-background-music-141011.mp3" type="audio/mp3">
+  यह ब्राउज़र म्यूज़िक सपोर्ट नहीं करता।
+</audio>
+
+<script>
+  const canvas = document.getElementById("gameCanvas");
+  const ctx = canvas.getContext("2d");
+
+  const bg = new Image();
+  bg.src = "https://cdn.pixabay.com/photo/2017/08/01/08/29/haunted-2560x1440.jpg"; // Haunted background
+
+  const player = {
+    x: 50,
+    y: 350,
+    width: 40,
+    height: 40,
+    color: "#00ff88",
+    speed: 4
+  };
+
+  const keys = {};
+  window.addEventListener("keydown", e => keys[e.key] = true);
+  window.addEventListener("keyup", e => keys[e.key] = false);
+
+  function movePlayer() {
+    if (keys["ArrowRight"] && player.x + player.width < canvas.width) {
+      player.x += player.speed;
+    }
+    if (keys["ArrowLeft"] && player.x > 0) {
+      player.x -= player.speed;
+    }
+    if (keys["ArrowUp"] && player.y > 0) {
+      player.y -= player.speed;
+    }
+    if (keys["ArrowDown"] && player.y + player.height < canvas.height) {
+      player.y += player.speed;
+    }
+  }
+
+  function drawPlayer() {
+    ctx.fillStyle = player.color;
+    ctx.fillRect(player.x, player.y, player.width, player.height);
+  }
+
+  function drawGame() {
+    ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
+    movePlayer();
+    drawPlayer();
+    requestAnimationFrame(drawGame);
+  }
+
+  drawGame();
+</script>
+
 </body>
 </html>
