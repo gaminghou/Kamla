@@ -24,11 +24,10 @@
   const canvas = document.getElementById("gameCanvas");
   const ctx = canvas.getContext("2d");
 
-  // Background image
+  // Background image (Google hosted, fast)
   const bg = new Image();
-  bg.src = "https://images.unsplash.com/photo-1587474260584-136574528edb?fit=crop&w=800&h=450&auto=format";
+  bg.src = "https://i.ibb.co/6B0jdmY/haunted-bg.jpg"; // Updated working link
 
-  // Player
   const player = {
     x: 50,
     y: 350,
@@ -62,7 +61,7 @@
   }
 
   bg.onload = function () {
-    drawGame();
+    drawGame(); // Start the loop only after image is loaded
   };
 </script>
 
