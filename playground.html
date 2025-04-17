@@ -2,7 +2,7 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
-  <title>Smart Writer - Playground</title>
+  <title>Smart Writer - Haunted Entry</title>
   <style>
     body {
       margin: 0;
@@ -12,69 +12,61 @@
     canvas {
       display: block;
       margin: 0 auto;
-      background-image: linear-gradient(to top, #222, #111);
-      border: 2px solid #444;
+      border: 3px solid #333;
+      background-size: cover;
+      background-position: center;
     }
   </style>
 </head>
 <body>
 
-<canvas id="gameCanvas" width="600" height="400"></canvas>
+<canvas id="gameCanvas" width="800" height="450"></canvas>
 
 <audio autoplay loop>
   <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_74c2cc41df.mp3?filename=creepy-background-113406.mp3" type="audio/mpeg">
-  आपका ब्राउज़र म्यूज़िक सपोर्ट नहीं करता।
+  यह ब्राउज़र म्यूज़िक सपोर्ट नहीं करता।
 </audio>
 
 <script>
   const canvas = document.getElementById("gameCanvas");
   const ctx = canvas.getContext("2d");
 
-  let player = {
+  const bg = new Image();
+  bg.src = "https://i.ibb.co/s2Lnqzj/haunted-bg.jpg"; // horror background
+
+  const player = {
     x: 50,
-    y: 300,
+    y: 350,
     width: 40,
     height: 40,
     color: "#00ff88",
     speed: 4
   };
 
+  const keys = {};
+  window.addEventListener("keydown", e => keys[e.key] = true);
+  window.addEventListener("keyup", e => keys[e.key] = false);
+
+  function movePlayer() {
+    if (keys["ArrowRight"] && player.x + player.width < canvas.width) player.x += player.speed;
+    if (keys["ArrowLeft"] && player.x > 0) player.x -= player.speed;
+    if (keys["ArrowUp"] && player.y > 0) player.y -= player.speed;
+    if (keys["ArrowDown"] && player.y + player.height < canvas.height) player.y += player.speed;
+  }
+
   function drawPlayer() {
     ctx.fillStyle = player.color;
     ctx.fillRect(player.x, player.y, player.width, player.height);
   }
 
-  function clearCanvas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-  }
-
-  function update() {
-    clearCanvas();
+  function drawGame() {
+    ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
     drawPlayer();
-    requestAnimationFrame(update);
-  }
-
-  let keys = {};
-  window.addEventListener("keydown", (e) => keys[e.key] = true);
-  window.addEventListener("keyup", (e) => keys[e.key] = false);
-
-  function movePlayer() {
-    if (keys["ArrowRight"] && player.x + player.width < canvas.width) {
-      player.x += player.speed;
-    }
-    if (keys["ArrowLeft"] && player.x > 0) {
-      player.x -= player.speed;
-    }
-    if (keys["ArrowUp"] && player.y > 0) {
-      player.y -= player.speed;
-    }
-    if (keys["ArrowDown"] && player.y + player.height < canvas.height) {
-      player.y += player.speed;
-    }
+    requestAnimationFrame(drawGame);
   }
 
   setInterval(movePlayer, 1000 / 60);
-  update();
+  drawGame();
 </script>
 
 </body>
